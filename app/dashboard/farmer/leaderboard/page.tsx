@@ -30,23 +30,82 @@ export default function LeaderboardPage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchLeaderboard = async () => {
-            try {
-                const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8081';
-                const res = await fetch(`${apiUrl}/api/leaderboard`);
-                if (res.ok) {
-                    const data = await res.json();
-                    setLeaderboard(data.leaderboard);
-                    setUserRank(data.user_rank);
-                }
-            } catch (error) {
-                console.error("Failed to fetch leaderboard", error);
-            } finally {
-                setLoading(false);
+        // Mock data for instant loading
+        const mockLeaderboard: LeaderboardEntry[] = [
+            {
+                id: '1',
+                rank: 1,
+                name: 'Rajesh Kumar',
+                location: 'Punjab, India',
+                green_score: 12500,
+                co2_saved: '1200kg',
+                waste_recycled: '5000kg',
+                badge: 'Eco Champion'
+            },
+            {
+                id: '2',
+                rank: 2,
+                name: 'Sunita Sharma',
+                location: 'Haryana, India',
+                green_score: 11200,
+                co2_saved: '1050kg',
+                waste_recycled: '4200kg',
+                badge: 'Green Guardian'
+            },
+            {
+                id: '3',
+                rank: 3,
+                name: 'Vikram Singh',
+                location: 'Uttar Pradesh, India',
+                green_score: 10500,
+                co2_saved: '980kg',
+                waste_recycled: '3800kg',
+                badge: 'Sustainability Hero'
+            },
+            {
+                id: '4',
+                rank: 4,
+                name: 'Amit Patel',
+                location: 'Gujarat, India',
+                green_score: 9800,
+                co2_saved: '850kg',
+                waste_recycled: '3200kg',
+                badge: 'Earth Saver'
+            },
+            {
+                id: '5',
+                rank: 5,
+                name: 'Priya Reddy',
+                location: 'Telangana, India',
+                green_score: 9200,
+                co2_saved: '780kg',
+                waste_recycled: '2900kg',
+                badge: 'Waste Warrior'
+            },
+            {
+                id: '6',
+                rank: 6,
+                name: 'Mohammed Ali',
+                location: 'Kerala, India',
+                green_score: 8900,
+                co2_saved: '720kg',
+                waste_recycled: '2500kg',
+                badge: 'Nature Lover'
             }
+        ];
+
+        const mockUserRank: UserRank = {
+            id: 'current-user',
+            rank: 12,
+            name: 'You',
+            green_score: 4500,
+            co2_saved: '350kg',
+            waste_recycled: '1200kg'
         };
 
-        fetchLeaderboard();
+        setLeaderboard(mockLeaderboard);
+        setUserRank(mockUserRank);
+        setLoading(false);
     }, []);
 
     if (loading) return <div className="p-8 text-center text-earth-600">Loading Rankings...</div>;
