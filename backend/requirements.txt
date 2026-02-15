@@ -1,11 +1,1 @@
-fastapi
-uvicorn
-pydantic
-scikit-learn
-pandas
-numpy
-python-multipart
-tensorflow
-pillow
-python-jose[cryptography]
-passlib[bcrypt]
+# No dependencies for simple_server.py
